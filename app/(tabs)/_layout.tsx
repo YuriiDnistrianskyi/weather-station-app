@@ -1,43 +1,41 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { View } from 'react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        screenOptions={{
+            headerTitleAlign: 'center',
+            tabBarActiveTintColor: 'white',
+            tabBarInactiveTintColor: 'gray',
+            tabBarStyle: {
+                backgroundColor: '#0c6673',
+                borderTopWidth: 1,
+                borderTopColor: '#ddd',
+                height: 60,
+                paddingBottom: 5,
+            },
+        }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+            headerShown: false,
+            title: 'Home',
+            tabBarIcon: ({ color }) => (
+                <View style={{ width: 20, height: 20, backgroundColor: color, borderRadius: 10 }} />
+            ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+            title: 'Settings',
+            tabBarIcon: ({ color }) => (
+                <View style={{ width: 20, height: 20, backgroundColor: color, borderRadius: 10 }} />
+            ),
         }}
       />
     </Tabs>
