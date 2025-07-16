@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { useRouter } from "expo-router"
 import WeatherStationBlock from "../../components/weatherStationBlock"
 
 export default function HomeScreen() {
-    const station = {
-        name: "WeatherStation",
-    }
+    const router = useRouter();
+
   return (
     <View style={styles.container}>
         <View style={styles.header}>
@@ -15,8 +15,8 @@ export default function HomeScreen() {
         </View>
         <View style={styles.WeatherStationContainer}>
             <View style={styles.block}>
-                <WeatherStationBlock name="Name"></WeatherStationBlock>
-                <WeatherStationBlock name="Weather Station"></WeatherStationBlock>
+                <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/1')}></WeatherStationBlock>
+                <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/2')}></WeatherStationBlock>
             </View>
         </View>
     </View>
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '80%',
         fontSize: 20,
+        fontFamily: 'Helvetica',
         textAlign: 'center',
         color: 'white',
     },
