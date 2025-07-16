@@ -1,18 +1,23 @@
-import {Text, View, StyleSheet} from 'react-native';
+import {Pressable, Text, View, StyleSheet} from 'react-native';
+import {Feather} from "@expo/vector-icons";
 
 type WeatherStationProps = {
-    name: string
+    name: string,
+    location: string,
+    onPress?: () => void
 }
 
-export default function WeatherStationBlock({ name } : WeatherStationProps){
+export default function WeatherStationBlock({ name, location, onPress } : WeatherStationProps){
     return (
-        <View style={styles.block}>
-            <View style={styles.image}></View>
+        <Pressable onPress={onPress} style={styles.block}>
+            <View style={styles.image}>
+                <Feather style={styles.imageBox} name="hard-drive" size={90} color={"#0c6673"}></Feather>
+            </View>
             <View style={styles.textBlock}>
                 <Text style={styles.headerText}>{name}</Text>
-                <Text style={styles.dataText}>detail text</Text>
+                <Text style={styles.locationText}>Weather station in {location}</Text>
             </View>
-        </View>
+        </Pressable>
     )
 }
 
@@ -22,17 +27,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 10,
-        height: 70,
+        height: 100,
         width: '100%',
         borderRadius: 10,
+        borderWidth: 2,
+        borderColor: "black",
 
-        backgroundColor: '#37cac6',
+        backgroundColor: '#ffffff',
     },
     image: {
         width: '40%',
         height: '100%',
         borderRadius: 10,
-        backgroundColor: 'black', //
+        alignItems: 'center',
+    },
+    imageBox: {
+
     },
     textBlock: {
         width: '55%',
@@ -43,11 +53,11 @@ const styles = StyleSheet.create({
     headerText: {
         width: '100%',
         height: '50%',
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: 'bold',
     },
-    dataText: {
+    locationText: {
         flex: 1,
-        fontSize: 10,
+        fontSize: 15,
     }
 })
