@@ -8,9 +8,9 @@ export default function RootLayout() {
 
     return (
         <ThemeProvider value={DefaultTheme}>
-            <Stack>
+            <Stack screenOptions={{headerShown: false}}>
                 { isLogin ?
-                    <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
+                    <Stack.Screen name="(tabs)"/>
                     :
                     <Stack.Screen name="login"/>
                 }

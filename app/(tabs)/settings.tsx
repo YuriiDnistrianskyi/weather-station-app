@@ -1,7 +1,11 @@
+import { View, Text, StyleSheet } from 'react-native';
+
 export default function SettingsScreen() {
     return (
-        <div>
-            <p>Settings</p>
-        </div>
+        <View>
+
+        </View>
     );
 }
+
+
