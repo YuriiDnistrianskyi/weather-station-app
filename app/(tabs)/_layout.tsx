@@ -17,12 +17,14 @@ export default function TabLayout() {
                 height: 60,
                 paddingBottom: 5,
             },
+            headerStyle: {
+                backgroundColor: '#0c6673'
+            }
         }}
     >
       <Tabs.Screen
         name="index"
         options={{
-            headerShown: false,
             title: 'Home',
             tabBarIcon: ({ color }) => (
                 <View style={{ width: 20, height: 20, backgroundColor: color, borderRadius: 10 }} />

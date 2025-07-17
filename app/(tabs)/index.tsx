@@ -1,26 +1,25 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from "expo-router"
 import WeatherStationBlock from "../../components/weatherStationBlock"
 
 export default function HomeScreen() {
     const router = useRouter();
 
-  return (
-    <View style={styles.container}>
-        <View style={styles.header}>
-            <Text style={styles.headerText}>Your weather station</Text>
-            <View style={styles.buttonContainer}>
-                <View style={styles.button}>+</View>
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Pressable style={styles.buttonContainer}>
+                    <Text style={styles.buttonText}>Add new station</Text>
+                </Pressable>
+            </View>
+            <View style={styles.WeatherStationContainer}>
+                <View style={styles.block}>
+                    <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/1')}></WeatherStationBlock>
+                    <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/2')}></WeatherStationBlock>
+                </View>
             </View>
         </View>
-        <View style={styles.WeatherStationContainer}>
-            <View style={styles.block}>
-                <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/1')}></WeatherStationBlock>
-                <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/2')}></WeatherStationBlock>
-            </View>
-        </View>
-    </View>
-  );
+      );
 }
 
 const styles = StyleSheet.create({
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: 40,
+        height: 50,
         width: '100%',
         backgroundColor: '#0c6673',
     },
@@ -45,16 +44,16 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     buttonContainer: {
-        height: '100%',
-        width: '20%',
+        flex: 1
     },
-    button: {
+    buttonText: {
+        marginTop: 10,
         height: '100%',
         width: '100%',
         justifyContent: 'center',
         textAlign: 'center',
-        fontSize: 30,
-        fontWeight: 'bold',
+        fontSize: 20,
+        fontFamily: 'Roboto',
         color: 'white'
     },
     WeatherStationContainer: {

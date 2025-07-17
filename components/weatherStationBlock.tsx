@@ -11,7 +11,7 @@ export default function WeatherStationBlock({ name, location, onPress } : Weathe
     return (
         <Pressable onPress={onPress} style={styles.block}>
             <View style={styles.image}>
-                <Feather style={styles.imageBox} name="hard-drive" size={90} color={"#0c6673"}></Feather>
+                <Feather name="hard-drive" size={90} color={"#0c6673"}></Feather>
             </View>
             <View style={styles.textBlock}>
                 <Text style={styles.headerText}>{name}</Text>
@@ -41,9 +41,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
     },
-    imageBox: {
-
-    },
     textBlock: {
         width: '55%',
         height: '100%',
@@ -52,12 +49,12 @@ const styles = StyleSheet.create({
     },
     headerText: {
         width: '100%',
-        height: '50%',
+        height: '40%',
         fontSize: 20,
         fontWeight: 'bold',
     },
     locationText: {
         flex: 1,
-        fontSize: 15,
+        fontSize: 17,
     }
 })

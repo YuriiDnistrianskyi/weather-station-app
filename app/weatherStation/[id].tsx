@@ -74,13 +74,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: 40,
+        height: 100,
         width: '100%',
         backgroundColor: '#0c6673',
+        alignItems: 'center',
     },
     backButtonContainer: {
         width: '20%',
-        height: '100%',
+        height: '30%',
     },
     backButton: {
         marginLeft: 20,
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     headerText: {
         marginTop: 8,
         width: '60%',
-        height: '100%',
+        height: '30%',
         fontSize: 20,
         fontFamily: 'Roboto',
         textAlign: 'center',
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     },
     editButtonContainer: {
         width: '20%',
-        height: '100%',
+        height: '30%',
     },
     editButton: {
         marginLeft: 20,
