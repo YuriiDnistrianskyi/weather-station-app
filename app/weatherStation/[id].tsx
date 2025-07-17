@@ -9,9 +9,14 @@ export default function WeatherStationPage() {
     const weatherStation = {
         name: "Weather Station",
         location: "Weather Station",
-        temperature: 60.11,
-        humidity: 60,
-        pressure: 60
+        macAddress: "127.0.0.1",
+        user_id: "1"
+    }
+
+    const data = {
+        temperature: 22.22,
+        humidity: 25.22,
+        pressure: 22.22,
     }
 
     const dataTemperature = {
@@ -45,19 +50,19 @@ export default function WeatherStationPage() {
                 <View style={styles.block}>
                     <Text style={styles.title}>Temperature:</Text>
                     <View style={styles.display}>
-                        <Text style={styles.displayText}>{weatherStation.temperature}°С</Text>
+                        <Text style={styles.displayText}>{data.temperature}°С</Text>
                     </View>
                 </View>
                 <View style={styles.block}>
                     <Text style={styles.title}>Humidity:</Text>
                     <View style={styles.display}>
-                        <Text style={styles.displayText}>{weatherStation.humidity}%</Text>
+                        <Text style={styles.displayText}>{data.humidity}%</Text>
                     </View>
                 </View>
                 <View style={styles.block}>
                     <Text style={styles.title}>Pressure:</Text>
                     <View style={styles.display}>
-                        <Text style={styles.displayText}>{weatherStation.pressure}hPa</Text>
+                        <Text style={styles.displayText}>{data.pressure}hPa</Text>
                     </View>
                 </View>
             </View>

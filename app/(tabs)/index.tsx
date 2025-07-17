@@ -1,9 +1,20 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from "expo-router"
+import { useContext, useEffect, useState } from "react";
 import WeatherStationBlock from "../../components/weatherStationBlock"
+import {WeatherStationContext} from "@/context/WeatherStationsContext";
 
 export default function HomeScreen() {
     const router = useRouter();
+    const context = useContext(WeatherStationContext);
+
+    if (!context) return (<Text style={styles.loader}>Loading</Text>);
+
+    const { weatherStations, getWeatherStations } = context;
+
+    useEffect(() => {
+        getWeatherStations();
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -14,9 +25,10 @@ export default function HomeScreen() {
             </View>
             <View style={styles.WeatherStationContainer}>
                 <View style={styles.block}>
-                    <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/1')}></WeatherStationBlock>
-                    <WeatherStationBlock name="Weather Station 1" location="Room 1" onPress={() => router.push('/weatherStation/2')}></WeatherStationBlock>
-                </View>
+                    {weatherStations.map(weatherStation => (
+                        <WeatherStationBlock name={weatherStation.name} location={weatherStation.location} onPress={() => router.push(`/weatherStation/${weatherStation.id}`)}></WeatherStationBlock>
+                    ))}
+               </View>
             </View>
         </View>
       );
@@ -63,5 +75,12 @@ const styles = StyleSheet.create({
     block: {
         height: '100%',
         width: '90%',
+    },
+    loader: {
+        width: '100%',
+        height: '30%',
+        color: '#000000',
+
+        backgroundColor: '#000000',
     }
 })
