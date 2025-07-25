@@ -1,12 +1,13 @@
 import {DefaultTheme, ThemeProvider} from '@react-navigation/native';
 import {Stack} from 'expo-router';
+import { useState} from "react";
 import {StatusBar} from 'expo-status-bar';
 import { SafeAreaView } from "react-native-safe-area-context";
 import {WeatherStationContextProvider} from "@/context/WeatherStationsContext";
 import 'react-native-reanimated';
 
 export default function RootLayout() {
-    let isLogin = true; //
+    const [isLogin, setIsLogin] = useState(false);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>

@@ -1,12 +1,14 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 export default function TabLayout() {
 
   return (
     <Tabs
         screenOptions={{
+            headerTintColor: 'white',
             headerTitleAlign: 'center',
             tabBarActiveTintColor: 'white',
             tabBarInactiveTintColor: 'gray',
@@ -27,7 +29,7 @@ export default function TabLayout() {
         options={{
             title: 'Home',
             tabBarIcon: ({ color }) => (
-                <View style={{ width: 20, height: 20, backgroundColor: color, borderRadius: 10 }} />
+                <Feather name="home" color={"#ffffff"} size={24} />
             ),
         }}
       />
@@ -36,7 +38,7 @@ export default function TabLayout() {
         options={{
             title: 'Settings',
             tabBarIcon: ({ color }) => (
-                <View style={{ width: 20, height: 20, backgroundColor: color, borderRadius: 10 }} />
+                <Feather name="settings" color={"#ffffff"} size={24} />
             ),
         }}
       />

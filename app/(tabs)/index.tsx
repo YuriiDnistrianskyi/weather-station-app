@@ -18,11 +18,9 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Pressable style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>Add new station</Text>
-                </Pressable>
-            </View>
+            <Pressable style={styles.buttonContainer}>
+                <Text style={styles.buttonText}>Add new station +</Text>
+            </Pressable>
             <View style={styles.WeatherStationContainer}>
                 <View style={styles.block}>
                     {weatherStations.map(weatherStation => (
@@ -37,6 +35,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#fff',
     },
     header: {
@@ -56,7 +56,11 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     buttonContainer: {
-        flex: 1
+        marginTop: 10,
+        width: '85%',
+        height: 50,
+        borderRadius: 10,
+        backgroundColor: '#0c6673',
     },
     buttonText: {
         marginTop: 10,
