@@ -1,4 +1,7 @@
-import React, { createContext, useState, ReactNode, useContext } from "react";
+import React, { createContext, useState, ReactNode, useContext, useEffect } from "react";
+import * as SecureStore from "expo-secure-store";
+import "../routes/routes"
+import {apiGetAllWeatherStations, apiLogin, apiLogout} from "@/routes/routes";
 
 type WeatherStation = {
   id: string;
@@ -9,6 +12,11 @@ type WeatherStation = {
 }
 
 type ContextType = {
+  token: string | null;
+  loading: boolean;
+  login(email: string, password: string): void;
+  logout(): void;
+
   weatherStations: WeatherStation[];
   setWeatherStations: (items: WeatherStation[]) => void;
   getWeatherStations: (filters?: any) => Promise<void>;
@@ -17,31 +25,43 @@ type ContextType = {
 export const WeatherStationContext = createContext<ContextType | null>(null);
 
 export const WeatherStationContextProvider = ({ children}: { children: ReactNode}) => {
+  const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const [weatherStations, setWeatherStations] = useState<WeatherStation[]>([]);
 
-  const stations = [
-    {
-      id: "1",
-      name: "Weather Station",
-      location: "Weather Station",
-      macAddress: "2345234543",
-      user_id: "2"
-    },
-    {
-      id: "1",
-      name: "Weather Station",
-      location: "Weather Station",
-      macAddress: "2345234543",
-      user_id: "2"
-    },
-  ]
+  useEffect(() => {
+    (async () => {
+      const storeAccessToken = await SecureStore.getItemAsync("access_token");
+      if (storeAccessToken) {
+        setToken(storeAccessToken);
+      }
+      setLoading(false);
+    })();
+  }, []);
+
+
+  const login = async(email: string, password: string) => {
+    const data = await apiLogin(email, password);
+    setToken(data.access_token);
+  }
+
+  const logout = async () => {
+    await apiLogout();
+    setToken(null);
+  }
 
   const getWeatherStations = async (filters?: any) => {
-    setWeatherStations(stations);
+    const weatherStationResponse = await apiGetAllWeatherStations();
+    setWeatherStations(weatherStationResponse.data);
   };
 
   return (
       <WeatherStationContext.Provider value={{
+        token,
+        loading,
+        login,
+        logout,
         weatherStations,
         setWeatherStations,
         getWeatherStations
