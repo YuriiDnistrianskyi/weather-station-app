@@ -1,5 +1,6 @@
 import React, { createContext, useState, ReactNode, useContext, useEffect } from "react";
-import * as SecureStore from "expo-secure-store";
+// import * as SecureStore from "expo-secure-store";
+import { setItem, getItem, removeItem} from "@/utils/storage"
 import "../routes/routes"
 import {apiGetAllWeatherStations, apiLogin, apiLogout} from "@/routes/routes";
 
@@ -32,14 +33,13 @@ export const WeatherStationContextProvider = ({ children}: { children: ReactNode
 
   useEffect(() => {
     (async () => {
-      const storeAccessToken = await SecureStore.getItemAsync("access_token");
+      const storeAccessToken = await getItem("access_token");
       if (storeAccessToken) {
         setToken(storeAccessToken);
       }
       setLoading(false);
     })();
   }, []);
-
 
   const login = async(email: string, password: string) => {
     const data = await apiLogin(email, password);
